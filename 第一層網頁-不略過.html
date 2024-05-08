@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>影片預覽</title>
+<style>
+    /* 背景樣式 */
+    body {
+        background-color: hsl(0, 1%, 36%); /* 背景顏色 */
+        font-family: Arial, sans-serif; /* 字體 */
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 將影片預覽圖和標題以網格形式排列 */
+    .videos {
+        display: grid;
+        grid-template-columns: repeat(3, 2fr); /* 2列 */
+        grid-gap: 20px; /* 間隔 */
+        padding: 20px; /* 內邊距 */
+        max-width: 800px; /* 最大寬度 */
+        margin: 0 auto; /* 自動置中 */
+    }
+
+    /* 影片預覽圖的樣式 */
+    .video-preview {
+        width: 100%;
+        cursor: pointer;
+        border-radius: 5px; /* 圓角 */
+        transition: transform 0.3s ease; /* 動畫效果 */
+    }
+
+    /* 影片預覽圖的 hover 效果 */
+    .video-preview:hover {
+        transform: scale(1.05); /* 放大 */
+    }
+
+    /* 影片標題的樣式 */
+    .video-title {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 20px; /* 字體大小 */
+        color: hwb(0 100% 0%); /* 字體顏色 */
+    }
+</style>
+</head>
+<body>
+<div class="videos">
+    <!-- 影片1 -->
+    <div class="video">
+        <a href="續放廣告-原始Code.html">
+            <img class="video-preview" src="實驗網頁/影片圖示/01.jpg" alt="影片1">
+            <div class="video-title">快樂飛機</div>
+        </a>
+    </div>
+
+    <div class="video">
+        <a href="續放廣告-原始Code.html">
+            <img class="video-preview" src="實驗網頁/影片圖示/02.jpg" alt="影片2">
+            <div class="video-title">手上小人</div>
+        </a>
+    </div>
+
+    <div class="video">
+        <a href="續放廣告-原始Code.html">
+            <img class="video-preview" src="實驗網頁/影片圖示/03.jpg" alt="影片3">
+            <div class="video-title">耳機吊床</div>
+        </a>
+    </div>
+
+    <div class="video">
+        <a href="續放廣告-原始Code.html">
+            <img class="video-preview" src="實驗網頁/影片圖示/04.jpg" alt="影片4">
+            <div class="video-title">紙袋人</div>
+        </a>
+    </div>
+
+    <div class="video">
+        <a href="續放廣告-原始Code.html">
+            <img class="video-preview" src="實驗網頁/影片圖示/05.jpg" alt="影片5">
+            <div class="video-title">頑皮豹</div>
+        </a>
+    </div>
+
+    <div class="video">
+        <a href="續放廣告-原始Code.html">
+            <img class="video-preview" src="實驗網頁/影片圖示/06.jpg" alt="影片6">
+            <div class="video-title">兔巴哥</div>
+        </a>
+    </div>
+
+</div>
+</body>
+</html>

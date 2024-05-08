@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>續放廣告組</title> 
+    <style>
+        body { 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #playButton {
+        position: absolute;
+        bottom: 8%;
+        left: 50% ;
+        height:10%;
+        width:10% ;
+        transform: translateX(-50%);
+        color: #f71515;
+        border-radius: 20px;
+        border: none;
+        }
+        #continueButton {
+        position: absolute;
+        bottom: 30%;
+        left: 70% ;
+        height:5%;
+        width:5% ;
+        transform: translateX(-50%);
+        border-radius: 20%;
+        border: none;
+        cursor: pointer;
+        display: none;
+        background-color: #4CAF50;
+        color: white;
+
+        }
+        #timer {
+        position: absolute;
+        bottom: 70%;
+        left: 68% ;
+        height: 4%;
+        width: 7%;
+        transform: translateX(-50%);
+        background-color: rgb(234, 146, 146);
+        color: black;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        display:none;
+        text-align: center
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <video id="advertisement-video" width="640"  controls src="http://media.w3.org/2010/05/sintel/trailer.mp4"> </video>
+    <video id="main-video" width="640"  controls src="https://imdb-video.media-imdb.com/vi94553625/1434659607842-pgv4ql-1709222866692.mp4?Expires=1713979256&Signature=pjW7WKvJjjtfVhlgf4PWUwwj-aZWJHz9wfnNswtHb7zWRaZyO54Wkky5AfCQLov5LAMMZ9fBjCgxOQMpVfqfXrwkkTqKay1G4iZ1C8NoDoWbK5-cuY0ucvfTNYaYp3j5aMYA4pOvEYNvpIR7rMnvjoWgWf9g6av7ta0iJdlqqI-L86frrniq-ndrMZSo8jydK2lXarpM93TkqiJkzoLswH5qZNqKqwkKrBVABDJc457Z2sVkTJKRdBnuQs2ON15ibMrxEuT~nj37SxOwpyD4Fw7iFcvGRBJzQjlCuBGcWgBxSfsLT267faXWFGRPixp7C163-A79~kbV7ZCVpcZuEQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" style="display:none;"> </video>
+    <button id="playButton">播放影片</button>
+    <button id="continueButton">繼續廣告</button>
+    <div>
+    <div id="timer"></div>
+
+<script>
+    var playButton = document.getElementById("playButton")
+    var continueButton = document.getElementById("continueButton")
+    var timer = document.getElementById("timer");
+    var advertisementVideo = document.getElementById("advertisement-video");
+    var mainVideo = document.getElementById("main-video");
+    var timerTimeout;
+    let timerInterval
+
+    
+    playButton.addEventListener("click", function() {
+        advertisementVideo.play();
+        mainVideo.style.display = "none";
+        advertisementVideo.addEventListener("play", function startTimer(){
+            setTimeout(function(){
+                advertisementVideo.removeEventListener("play",startTimer);
+                advertisementVideo.pause();
+                continueButton.style.display ="block";
+                timer.style.display ="block";
+        
+                const countdownDuration = 10;
+                let remainingTime = countdownDuration;
+                document.getElementById('timer').textContent = remainingTime;
+                
+                timerInterval = setInterval(() => {
+                    remainingTime--;
+                    document.getElementById('timer').textContent = remainingTime;
+                    if (remainingTime === 0) {
+                        clearInterval(timerInterval);
+                        mainVideo.style.display = "block";
+                        mainVideo.play()
+                        advertisementVideo.style.display = "none";
+                        playButton.style.display = "none";
+                        continueButton.style.display = "none";
+                        timer.style.display = "none";
+
+                }
+            }, 1000);   
+        }, 6000);
+     });
+    
+    continueButton.addEventListener("click", function() {
+    clearInterval(timerInterval);
+    advertisementVideo.play(); 
+    advertisementVideo.addEventListener('ended', function(){
+        mainVideo.style.display = "block";
+        mainVideo.play();
+        advertisementVideo. style.display = "none";
+        playButton.style.display ="none";
+        continueButton.style.display = "none"; 
+        timer.style.display ="none";
+    });
+    continueButton.style.display = "none";
+    timer.style.display="none"
+    mainvideo.style,display = "none";
+    });
+      advideo.play();
+ });
+
+</script>
+
+</body>
+</html>
