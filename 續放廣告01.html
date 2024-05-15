@@ -58,7 +58,7 @@
 </head>
 <body>
     <div>
-    <video id="advertisement-video" width="640"  controls src="https://gyo12345.github.io/2/videos/AD_01.mp4"> </video>
+    <video id="advertisement-video" width="640"  src="https://gyo12345.github.io/2/videos/AD_01.mp4"> </video>
     <video id="main-video" width="640"  controls src="https://gyo12345.github.io/2/videos/mainvideo.mp4" style="display:none;"> </video>
     <button id="playButton">播放影片</button>
     <button id="continueButton">繼續廣告</button>
@@ -78,6 +78,7 @@
     playButton.addEventListener("click", function() {
         advertisementVideo.play();
         mainVideo.style.display = "none";
+        playButton.style.display = "none";
         advertisementVideo.addEventListener("play", function startTimer(){
             setTimeout(function(){
                 advertisementVideo.removeEventListener("play",startTimer);
@@ -121,7 +122,7 @@
     timer.style.display="none"
     mainvideo.style,display = "none";
     });
-      advideo.play();
+
  });
 
 </script>
