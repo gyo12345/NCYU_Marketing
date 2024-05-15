@@ -46,6 +46,7 @@
         advideo.play();
         // 隱藏正式影片
         mainvideo.style.display = "none";
+        playButton.style.display = "none";
         // 當廣告影片播放時
         advideo.addEventListener("play", function handlePlay() {
             // 從廣告影片中移除事件監聽器，避免重複添加
@@ -63,8 +64,6 @@
     });
 
 
-    // 自動播放廣告影片
-    advideo.play();
 </script>
 
 </body>
