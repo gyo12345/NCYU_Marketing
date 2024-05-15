@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>不可略過廣告</title> 
+    <style>
+        body { 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: hwb(0 91% 7%);
+        }
+        #playButton {
+            position: absolute;
+            bottom: 8%;
+            left: 50% ;
+            height: 10%;
+            width: 10%;
+            transform: translateX(-50%);
+            color: #f71515;
+            border-radius: 20px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 廣告影片 -->
+    <video id="廣告影片" width="640" controls src="https://gyo12345.github.io/2/videos/AD_02.mp4"></video>
+    <!-- 正式影片 -->
+    <video id="正式影片" width="640" controls src="https://gyo12345.github.io/2/videos/mainvideo.mp4" style="display:none;"></video>
+    <!-- 播放影片按鈕 -->
+    <button id="playButton">播放影片</button>
+
+<script>
+    // 取得按鈕及影片元素
+    var playButton = document.getElementById("playButton");
+    var advideo = document.getElementById("廣告影片");
+    var mainvideo = document.getElementById("正式影片");
+
+    // 播放按鈕點擊事件
+    playButton.addEventListener("click", function() {
+        // 播放廣告影片
+        advideo.play();
+        // 隱藏正式影片
+        mainvideo.style.display = "none";
+        // 當廣告影片播放時
+        advideo.addEventListener("play", function handlePlay() {
+            // 從廣告影片中移除事件監聽器，避免重複添加
+            advideo.removeEventListener("play", handlePlay);
+        });
+    });
+    
+    // 監聽廣告影片播放結束事件
+    advideo.addEventListener("ended", function() {
+        // 播放正式影片，隱藏按鈕
+        mainvideo.style.display = "block";
+        mainvideo.play(); 
+        advideo.style.display = "none";
+        playButton.style.display = "none";
+    });
+
+
+    // 自動播放廣告影片
+    advideo.play();
+</script>
+
+</body>
+</html>
