@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>實驗主頁</title>
     <style>
-        body { 
+        body {
             background-color: #141414;
             color: #fff;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; 
+            height: 100vh;
+            width: 100vw;
             margin: 0 auto;
         }
 
         .ad-container {
             position: relative;
             width: 90%;
-            min-width: 640px;
             text-align: center;
             padding: 20px;
             border: 2.5px solid #fff;
@@ -39,6 +39,13 @@
             margin-bottom: 1.5rem;
         }
 
+        .ad-link-container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: center;
+        }
+
         .ad-link {
             display: inline-block;
             padding: 10px 20px;
@@ -47,20 +54,30 @@
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            width: 80px;
         }
 
         .ad-link:hover {
             background-color: #ff7043;
         }
+
+        @media screen and (max-width: 576px) {
+            .ad-link-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="ad-container">
-         <h1>歡迎參與本次實驗</h1> 
+        <h1>歡迎參與本次實驗</h1>
         <p>請根據研究人員所指示<br>點擊所參與的實驗組別！!</p>
-        <a href="第一層網頁-不略過.html" class="ad-link">廣告守護者</a>
-        <a href="第一層網頁-略過.html" class="ad-link">廣告解放者</a>
-        <a href="第一層網頁-續放.html"class="ad-link">廣告挑戰者</a>
+        <div class="ad-link-container">
+            <a href="第一層網頁-不略過.html" class="ad-link">廣告守護者</a>
+            <a href="第一層網頁-略過.html" class="ad-link">廣告解放者</a>
+            <a href="第一層網頁-續放.html"class="ad-link">廣告挑戰者</a>
+        </div>
     </div>
 
 
