@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,33 +7,44 @@
     <title>不可略過廣告</title> 
     <style>
         body { 
-            display: flex;
+            /*display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100vh;*/
             background-color: hwb(0 91% 7%);
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            min-width: 640px;
+            margin: 0 auto;
+        }
+        .video-position {
+            display: block;
+            margin: 0 auto;
+            width: 80%;
         }
         #playButton {
             position: absolute;
-            bottom: 8%;
-            left: 50% ;
-            height: 10%;
-            width: 10%;
+            bottom: 45%;
+            left: 51% ;
+            height: 3rem;
+            width: 5rem;
             transform: translateX(-50%);
             color: #f71515;
             border-radius: 20px;
             border: none;
         }
+
     </style>
 </head>
 <body>
-    <!-- 廣告影片 -->
-    <video id="廣告影片" width="640" src="https://gyo12345.github.io/2/videos/AD_04.mp4" playsinline ></video>
-    <!-- 正式影片 -->
-    <video id="正式影片" width="640" controls src="https://gyo12345.github.io/2/videos/mainvideo.mp4" playsinline style="display:none;"></video>
-    <!-- 播放影片按鈕 -->
-    <button id="playButton">播放影片</button>
-
+    <div class="container">
+        <video id="廣告影片"class="video-position" src="https://gyo12345.github.io/2/videos/AD_04.mp4" playsinline > </video>
+        <video id="正式影片"class="video-position" controls src="https://gyo12345.github.io/2/videos/影片01.mp4" playsinline style="display:none;"> </video>
+        <button id="playButton">播放影片</button>
+    </div>
+    
 <script>
     // 取得按鈕及影片元素
     var playButton = document.getElementById("playButton");
@@ -62,7 +73,6 @@
         advideo.style.display = "none";
         playButton.style.display = "none";
     });
-
 
 </script>
 
