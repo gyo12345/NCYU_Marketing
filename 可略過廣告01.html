@@ -13,23 +13,35 @@
             height: 100vh;
             background-color: hwb(0 91% 7%);
         }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            min-width: 640px;
+            margin: 0 auto;
+        }
         #playButton {
             position: absolute;
-            bottom: 8%;
-            left: 50% ;
-            height: 10%;
-            width: 10%;
+            bottom: 45%;
+            left: 51% ;
+            height: 3rem;
+            width: 5rem;
             transform: translateX(-50%);
             color: #f71515;
             border-radius: 20px;
             border: none;
         }
+        .video-position {
+            display: block;
+            margin: 0 auto;
+            width: 80%;
+        }
         #skipButton {
             position: absolute;
-            bottom: 30%;
-            left: 70% ;
-            height: 5%;
-            width: 5%;
+            bottom: 5%;
+            right: 9% ;
+            height: 3rem;
+            width: 4.5rem;
             transform: translateX(-50%);
             border-radius: 20%;
             border: none;
@@ -38,18 +50,15 @@
             background-color: #e73c11;
             color: white;
         }
-        
     </style>
 </head>
 <body>
-    <!-- 廣告影片 -->
-    <video id="廣告影片" width="640" src="https://gyo12345.github.io/2/videos/AD_01.mp4" playsinline ></video>
-    <!-- 正式影片 -->
-    <video id="正式影片" width="640" controls src="https://gyo12345.github.io/2/videos/mainvideo.mp4" playsinline style="display:none;"></video>
-    <!-- 播放影片按鈕 -->
-    <button id="playButton">播放影片</button>
-    <!-- 略過廣告按鈕 -->
-    <button id="skipButton">略過廣告</button>
+    <div class="container">
+        <video id="廣告影片" class="video-position" src="https://gyo12345.github.io/2/videos/AD_01.mp4" playsinline ></video>
+        <video id="正式影片" class="video-position" controls src="https://gyo12345.github.io/2/videos/mainvideo.mp4" playsinline style="display:none;"></video>
+        <button id="playButton">播放影片</button>
+        <button id="skipButton">略過廣告</button>
+    </div> 
 
 <script>
     // 取得按鈕及影片元素
