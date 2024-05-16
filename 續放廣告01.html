@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,8 +68,8 @@
 </head>
 <body>
     <div class="container">
-        <video id="advertisement-video" class="video-position" src="https://gyo12345.github.io/2/videos/AD_02.mp4" playsinline > </video>
-        <video id="main-video" controls class="video-position" src="https://gyo12345.github.io/2/videos/影片01.mp4" playsinline style="display:none;"> </video>
+        <video id="advertisement-video" class="video-position" src="https://gyo12345.github.io/2/videos/AD_01.mp4" playsinline > </video>
+        <video id="main-video" controls class="video-position" src="https://gyo12345.github.io/2/videos/影片02.mp4" playsinline style="display:none;"> </video>
         <button id="playButton">播放影片</button>
         <button id="continueButton">繼續廣告</button>
         <div id="timer"></div>
@@ -88,45 +88,51 @@
 
     playButton.addEventListener("click", function() {
         advertisementVideo.play();
+        mainVideo.style.display = "none";
         playButton.style.display ="none";
-    });
+        advertisementVideo.addEventListener("play", function startTimer(){
+            setTimeout(function(){
+                advertisementVideo.removeEventListener("play",startTimer);
+                advertisementVideo.pause();
+                continueButton.style.display ="block";
+                timer.style.display ="block";
 
-    advertisementVideo.addEventListener("play", function startTimer(){
-        setTimeout(function(){
-            advertisementVideo.removeEventListener("play",startTimer);
-            advertisementVideo.pause();
-            continueButton.style.display = "block";
-            timer.style.display = "block";
-
-            let remainingTime = 3;
-            document.getElementById('timer').textContent = remainingTime;
-
-            timerInterval = setInterval(() => {
-                remainingTime--;
+                const countdownDuration = 10;
+                let remainingTime = countdownDuration;
                 document.getElementById('timer').textContent = remainingTime;
-                if (remainingTime === 0) {
-                    clearInterval(timerInterval);
-                    mainVideo.style.display = "block";
-                    advertisementVideo.style.display = "none";
-                    continueButton.style.display = "none";
-                    timer.style.display = "none";
-                    mainVideo.play();
-                }
-            }, 1000);
-        }, 6000);
-    });
 
-    advertisementVideo.addEventListener('ended', function(){
-        mainVideo.style.display = "block";
-        mainVideo.play();
-        advertisementVideo.style.display = "none";
-    });
+                timerInterval = setInterval(() => {
+                    remainingTime--;
+                    document.getElementById('timer').textContent = remainingTime;
+                    if (remainingTime === 0) {
+                        clearInterval(timerInterval);
+                        mainVideo.style.display = "block";
+                        mainVideo.play()
+                        advertisementVideo.style.display = "none";
+                        playButton.style.display = "none";
+                        continueButton.style.display = "none";
+                        timer.style.display = "none";
+                    }
+                }, 1000);
+            }, 6000);
+        });
 
-    continueButton.addEventListener("click", function() {
+        continueButton.addEventListener("click", function() {
         clearInterval(timerInterval);
-        continueButton.style.display = "none";
-        timer.style.display = "none";
         advertisementVideo.play();
+        advertisementVideo.addEventListener('ended', function(){
+            mainVideo.style.display = "block";
+            mainVideo.play();
+            advertisementVideo. style.display = "none";
+            playButton.style.display ="none";
+            continueButton.style.display = "none";
+            timer.style.display ="none";
+        });
+        continueButton.style.display = "none";
+        timer.style.display="none"
+        mainvideo.style,display = "none";
+        });
+        // advideo.play();
     });
 
 </script>
