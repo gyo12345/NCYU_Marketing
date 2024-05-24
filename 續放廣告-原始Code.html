@@ -3,67 +3,78 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>續放廣告組</title> 
+
+    <title>續放廣告組</title>
     <style>
-        body { 
-            display: flex;
+        body {
+            /* display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: center; */
+            /* height: 100vh; */
             background-color: hwb(0 91% 7%);
         }
+        .container {
+            position: relative;
+            width: 100vw;
+            min-width: 640px;
+            margin: 0 auto;
+        }
         #playButton {
-        position: absolute;
-        bottom: 8%;
-        left: 50% ;
-        height:10%;
-        width:10% ;
-        transform: translateX(-50%);
-        color: #f71515;
-        border-radius: 20px;
-        border: none;
+            position: absolute;
+            bottom: 45%;
+            left: 51%;
+            height: 3rem;
+            width: 5rem;
+            transform: translateX(-50%);
+            color: #f71515;
+            border-radius: 20px;
+            border: none;
+        }
+        .video-position {
+            display: block;
+            margin: 0 auto;
+            width: 80%;
         }
         #continueButton {
-        position: absolute;
-        bottom: 30%;
-        left: 70% ;
-        height:5%;
-        width:5% ;
-        transform: translateX(-50%);
-        border-radius: 20%;
-        border: none;
-        cursor: pointer;
-        display: none;
-        background-color: #4CAF50;
-        color: white;
-
+            position: absolute;
+            bottom: 5%;
+            right: 9%;
+            height: 3rem;
+            width: 4.5rem;
+            transform: translateX(-50%);
+            border-radius: 20%;
+            border: none;
+            cursor: pointer;
+            display: none;
+            background-color: #4CAF50;
+            color: white;
         }
         #timer {
-        position: absolute;
-        bottom: 70%;
-        left: 68% ;
-        height: 4%;
-        width: 7%;
-        transform: translateX(-50%);
-        background-color: rgb(234, 146, 146);
-        color: black;
-        border-radius: 20px;
-        border: none;
-        cursor: pointer;
-        display:none;
-        text-align: center
+            position: absolute;
+            top: 6%;
+            right: 11%;
+            height: 1.5rem;
+            width: 3rem;
+            transform: translateX(-50%);
+            background-color: rgb(234, 146, 146);
+            color: black;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            display:none;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div>
-    <video id="advertisement-video" width="640"  controls src="https://gyo12345.github.io/2/videos/advideo.mp4"> </video>
-    <video id="main-video" width="640"  controls src="https://gyo12345.github.io/2/videos/mainvideo.mp4" style="display:none;"> </video>
-    <button id="playButton">播放影片</button>
-    <button id="continueButton">繼續廣告</button>
-    <div>
-    <div id="timer"></div>
+    <div class="container">
+        <video id="advertisement-video" class="video-position" src="https://gyo12345.github.io/NCYU_Marketing/videos/AD_002_15s.mp4" playsinline > </video>
+        <video id="main-video" controls class="video-position" src="https://gyo12345.github.io/NCYU_Marketing/videos/music_01.mp4" playsinline style="display:none;"> </video>
+        <button id="playButton">播放影片</button>
+        <button id="continueButton">繼續廣告</button>
+        <div id="timer"></div>
+    </div>
+
 
 <script>
     var playButton = document.getElementById("playButton")
@@ -74,21 +85,22 @@
     var timerTimeout;
     let timerInterval
 
-    
+
     playButton.addEventListener("click", function() {
         advertisementVideo.play();
         mainVideo.style.display = "none";
+        playButton.style.display ="none";
         advertisementVideo.addEventListener("play", function startTimer(){
             setTimeout(function(){
                 advertisementVideo.removeEventListener("play",startTimer);
                 advertisementVideo.pause();
                 continueButton.style.display ="block";
                 timer.style.display ="block";
-        
+
                 const countdownDuration = 10;
                 let remainingTime = countdownDuration;
                 document.getElementById('timer').textContent = remainingTime;
-                
+
                 timerInterval = setInterval(() => {
                     remainingTime--;
                     document.getElementById('timer').textContent = remainingTime;
@@ -100,29 +112,28 @@
                         playButton.style.display = "none";
                         continueButton.style.display = "none";
                         timer.style.display = "none";
+                    }
+                }, 1000);
+            }, 6000);
+        });
 
-                }
-            }, 1000);   
-        }, 6000);
-     });
-    
-    continueButton.addEventListener("click", function() {
-    clearInterval(timerInterval);
-    advertisementVideo.play(); 
-    advertisementVideo.addEventListener('ended', function(){
-        mainVideo.style.display = "block";
-        mainVideo.play();
-        advertisementVideo. style.display = "none";
-        playButton.style.display ="none";
-        continueButton.style.display = "none"; 
-        timer.style.display ="none";
+        continueButton.addEventListener("click", function() {
+        clearInterval(timerInterval);
+        advertisementVideo.play();
+        advertisementVideo.addEventListener('ended', function(){
+            mainVideo.style.display = "block";
+            mainVideo.play();
+            advertisementVideo. style.display = "none";
+            playButton.style.display ="none";
+            continueButton.style.display = "none";
+            timer.style.display ="none";
+        });
+        continueButton.style.display = "none";
+        timer.style.display="none"
+        mainvideo.style,display = "none";
+        });
+        // advideo.play();
     });
-    continueButton.style.display = "none";
-    timer.style.display="none"
-    mainvideo.style,display = "none";
-    });
-      advideo.play();
- });
 
 </script>
 
