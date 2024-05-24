@@ -64,6 +64,18 @@
             display:none;
             text-align: center;
         }
+        #returnButton {
+            position: absolute;
+            bottom: -10%;
+            left: 51% ;
+            height: 3rem;
+            width: 5rem;
+            transform: translateX(-50%);
+            color: #3b15f7;
+            border-radius: 20px;
+            border: none;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -72,9 +84,9 @@
         <video id="main-video" controls class="video-position" src="https://gyo12345.github.io/NCYU_Marketing/videos/Blog_01.mp4" playsinline style="display:none;"> </video>
         <button id="playButton">播放影片</button>
         <button id="continueButton">繼續廣告</button>
+        <button id="returnButton">返回大廳</button>
         <div id="timer"></div>
     </div>
-
 
 <script>
     var playButton = document.getElementById("playButton")
@@ -82,6 +94,7 @@
     var timer = document.getElementById("timer");
     var advertisementVideo = document.getElementById("advertisement-video");
     var mainVideo = document.getElementById("main-video");
+    var returnButton = document.getElementById("returnButton");
     var timerTimeout;
     let timerInterval
 
@@ -112,6 +125,7 @@
                         playButton.style.display = "none";
                         continueButton.style.display = "none";
                         timer.style.display = "none";
+                        returnButton.style.display = "block";
                     }
                 }, 1000);
             }, 6000);
@@ -131,8 +145,13 @@
         continueButton.style.display = "none";
         timer.style.display="none"
         mainvideo.style,display = "none";
+        returnButton.style.display = "block"; // 顯示返回大廳按鈕
         });
         // advideo.play();
+    });
+
+    returnButton.addEventListener("click", function() {
+        window.location.href = "廣告挑戰者.html"; // 返回上一頁
     });
 
 </script>
