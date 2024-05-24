@@ -36,6 +36,19 @@
             border: none;
         }
 
+        #returnButton {
+            position: absolute;
+            bottom: -10%;
+            left: 51% ;
+            height: 3rem;
+            width: 5rem;
+            transform: translateX(-50%);
+            color: #3b15f7;
+            border-radius: 20px;
+            border: none;
+            display: none;
+        }
+        
     </style>
 </head>
 <body>
@@ -43,6 +56,7 @@
         <video id="廣告影片"class="video-position" src="https://gyo12345.github.io/NCYU_Marketing/videos/AD_001_15s.mp4" playsinline > </video>
         <video id="正式影片"class="video-position" controls src="https://gyo12345.github.io/NCYU_Marketing/videos/Entertainment_01.mp4" playsinline style="display:none;"> </video>
         <button id="playButton">播放影片</button>
+        <button id="returnButton">返回大廳</button> 
     </div>
     
 <script>
@@ -50,7 +64,8 @@
     var playButton = document.getElementById("playButton");
     var advideo = document.getElementById("廣告影片");
     var mainvideo = document.getElementById("正式影片");
-
+    var returnButton = document.getElementById("returnButton");
+    
     // 播放按鈕點擊事件
     playButton.addEventListener("click", function() {
         // 播放廣告影片
@@ -72,6 +87,10 @@
         mainvideo.play(); 
         advideo.style.display = "none";
         playButton.style.display = "none";
+        returnButton.style.display = "block";
+    });
+    returnButton.addEventListener("click", function() {
+        window.location.href = "廣告守護者.html";
     });
 
 </script>
