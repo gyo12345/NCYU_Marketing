@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>廣告挑戰者04</title>
+    <title>廣告挑戰者05</title>
     <style>
         body {
             /* display: flex;
@@ -80,7 +80,7 @@
 </head>
 <body>
     <div class="container">
-        <video id="advertisement-video" class="video-position" src="https://gyo12345.github.io/NCYU_Marketing/videos/AD_004_15s.mp4" playsinline > </video>
+        <video id="advertisement-video" class="video-position" src="https://gyo12345.github.io/NCYU_Marketing/videos/AD_004_15s.mp4" playsinline> </video>
         <video id="main-video" controls class="video-position" src="https://gyo12345.github.io/NCYU_Marketing/videos/comdy_01.mp4" playsinline style="display:none;"> </video>
         <button id="playButton">播放影片</button>
         <button id="continueButton">繼續廣告</button>
@@ -89,26 +89,26 @@
     </div>
 
 <script>
-    var playButton = document.getElementById("playButton")
-    var continueButton = document.getElementById("continueButton")
+    var playButton = document.getElementById("playButton");
+    var continueButton = document.getElementById("continueButton");
     var timer = document.getElementById("timer");
     var advertisementVideo = document.getElementById("advertisement-video");
     var mainVideo = document.getElementById("main-video");
     var returnButton = document.getElementById("returnButton");
     var timerTimeout;
-    let timerInterval
-
+    let timerInterval;
 
     playButton.addEventListener("click", function() {
         advertisementVideo.play();
         mainVideo.style.display = "none";
-        playButton.style.display ="none";
-        advertisementVideo.addEventListener("play", function startTimer(){
-            setTimeout(function(){
-                advertisementVideo.removeEventListener("play",startTimer);
+        playButton.style.display = "none";
+
+        advertisementVideo.addEventListener("play", function startTimer() {
+            setTimeout(function() {
+                advertisementVideo.removeEventListener("play", startTimer);
                 advertisementVideo.pause();
-                continueButton.style.display ="block";
-                timer.style.display ="block";
+                continueButton.style.display = "block";
+                timer.style.display = "block";
 
                 const countdownDuration = 10;
                 let remainingTime = countdownDuration;
@@ -120,40 +120,37 @@
                     if (remainingTime === 0) {
                         clearInterval(timerInterval);
                         mainVideo.style.display = "block";
-                        mainVideo.play()
+                        mainVideo.play();
                         advertisementVideo.style.display = "none";
                         playButton.style.display = "none";
                         continueButton.style.display = "none";
                         timer.style.display = "none";
-                        returnButton.style.display = "block";
+                        returnButton.style.display = "block"; // 顯示返回大廳按鈕
                     }
                 }, 1000);
             }, 6000);
         });
 
         continueButton.addEventListener("click", function() {
-        clearInterval(timerInterval);
-        advertisementVideo.play();
-        advertisementVideo.addEventListener('ended', function(){
-            mainVideo.style.display = "block";
-            mainVideo.play();
-            advertisementVideo. style.display = "none";
-            playButton.style.display ="none";
+            clearInterval(timerInterval);
+            advertisementVideo.play();
             continueButton.style.display = "none";
-            timer.style.display ="none";
+            timer.style.display = "none";
+
+            advertisementVideo.addEventListener('ended', function onAdEnded() {
+                advertisementVideo.removeEventListener('ended', onAdEnded);
+                mainVideo.style.display = "block";
+                mainVideo.play();
+                advertisementVideo.style.display = "none";
+                playButton.style.display = "none";
+                returnButton.style.display = "block"; // 顯示返回大廳按鈕
+            });
         });
-        continueButton.style.display = "none";
-        timer.style.display="none"
-        mainvideo.style,display = "none";
-        returnButton.style.display = "block"; // 顯示返回大廳按鈕
-        });
-        // advideo.play();
     });
 
     returnButton.addEventListener("click", function() {
         window.location.href = "廣告挑戰者.html"; // 返回上一頁
     });
-
 </script>
 
 </body>
