@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>廣告挑戰者05</title>
+    
+    <title>廣告解放者05</title> 
     <style>
-        body {
-            /* display: flex;
+        body { 
+            /*display: flex;
             justify-content: center;
-            align-items: center; */
-            /* height: 100vh; */
+            align-items: center;
+            height: 100vh; */
             background-color: hwb(0 91% 7%);
         }
+
         .container {
             position: relative;
             width: 100vw;
@@ -22,7 +23,7 @@
         #playButton {
             position: absolute;
             bottom: 45%;
-            left: 51%;
+            left: 51% ;
             height: 3rem;
             width: 5rem;
             transform: translateX(-50%);
@@ -35,10 +36,10 @@
             margin: 0 auto;
             width: 80%;
         }
-        #continueButton {
+        #skipButton {
             position: absolute;
             bottom: 5%;
-            right: 9%;
+            right: 9% ;
             height: 3rem;
             width: 4.5rem;
             transform: translateX(-50%);
@@ -46,23 +47,8 @@
             border: none;
             cursor: pointer;
             display: none;
-            background-color: #4CAF50;
+            background-color: #e73c11;
             color: white;
-        }
-        #timer {
-            position: absolute;
-            top: 6%;
-            right: 11%;
-            height: 1.5rem;
-            width: 3rem;
-            transform: translateX(-50%);
-            background-color: rgb(234, 146, 146);
-            color: black;
-            border-radius: 20px;
-            border: none;
-            cursor: pointer;
-            display:none;
-            text-align: center;
         }
         #returnButton {
             position: absolute;
@@ -80,77 +66,68 @@
 </head>
 <body>
     <div class="container">
-        <video id="advertisement-video" class="video-position" src="https://gyo12345.github.io/NCYU_Marketing/videos/AD_006_15s.mp4" playsinline> </video>
-        <video id="main-video" controls class="video-position" src="https://gyo12345.github.io/NCYU_Marketing/videos/_01.mp4" playsinline style="display:none;"> </video>
+        <video id="廣告影片" class="video-position" src="https://gyo12345.github.io/NCYU_Marketing/videos/AD_005_15s.mp4" playsinline ></video>
+        <video id="正式影片" class="video-position" controls src="https://gyo12345.github.io/NCYU_Marketing/videos/Blog_01.mp4.mp4" playsinline style="display:none;"></video>
         <button id="playButton">播放影片</button>
-        <button id="continueButton">繼續廣告</button>
+        <button id="skipButton">略過廣告</button>
         <button id="returnButton">返回大廳</button>
-        <div id="timer"></div>
-    </div>
+    </div> 
 
 <script>
+    // 取得按鈕及影片元素
     var playButton = document.getElementById("playButton");
-    var continueButton = document.getElementById("continueButton");
-    var timer = document.getElementById("timer");
-    var advertisementVideo = document.getElementById("advertisement-video");
-    var mainVideo = document.getElementById("main-video");
+    var skipButton = document.getElementById("skipButton");
+    var advideo = document.getElementById("廣告影片");
+    var mainvideo = document.getElementById("正式影片");
     var returnButton = document.getElementById("returnButton");
-    var timerTimeout;
-    let timerInterval;
 
+
+    // 播放按鈕點擊事件
     playButton.addEventListener("click", function() {
-        advertisementVideo.play();
-        mainVideo.style.display = "none";
+        // 播放廣告影片
+        advideo.play();
+        // 隱藏正式影片
+        mainvideo.style.display = "none";
         playButton.style.display = "none";
-
-        advertisementVideo.addEventListener("play", function startTimer() {
+        // 當廣告影片播放時
+        advideo.addEventListener("play", function handlePlay() {
+            // 顯示略過按鈕
             setTimeout(function() {
-                advertisementVideo.removeEventListener("play", startTimer);
-                advertisementVideo.pause();
-                continueButton.style.display = "block";
-                timer.style.display = "block";
-
-                const countdownDuration = 10;
-                let remainingTime = countdownDuration;
-                document.getElementById('timer').textContent = remainingTime;
-
-                timerInterval = setInterval(() => {
-                    remainingTime--;
-                    document.getElementById('timer').textContent = remainingTime;
-                    if (remainingTime === 0) {
-                        clearInterval(timerInterval);
-                        mainVideo.style.display = "block";
-                        mainVideo.play();
-                        advertisementVideo.style.display = "none";
-                        playButton.style.display = "none";
-                        continueButton.style.display = "none";
-                        timer.style.display = "none";
-                        returnButton.style.display = "block"; // 顯示返回大廳按鈕
-                    }
-                }, 1000);
-            }, 6000);
-        });
-
-        continueButton.addEventListener("click", function() {
-            clearInterval(timerInterval);
-            advertisementVideo.play();
-            continueButton.style.display = "none";
-            timer.style.display = "none";
-
-            advertisementVideo.addEventListener('ended', function onAdEnded() {
-                advertisementVideo.removeEventListener('ended', onAdEnded);
-                mainVideo.style.display = "block";
-                mainVideo.play();
-                advertisementVideo.style.display = "none";
-                playButton.style.display = "none";
-                returnButton.style.display = "block"; // 顯示返回大廳按鈕
-            });
+                skipButton.style.display = "block";
+            }, 6000); // 廣告影片播放6秒後顯示略過按鈕
+            // 從廣告影片中移除事件監聽器，避免重複添加
+            advideo.removeEventListener("play", handlePlay);
         });
     });
-
+    
+    // 略過按鈕點擊事件
+    skipButton.addEventListener("click", function() {
+        // 播放正式影片，隱藏按鈕
+        advideo.pause();
+        mainvideo.style.display = "block";
+        mainvideo.play(); 
+        advideo.style.display = "none";
+        skipButton.style.display = "none";
+        playButton.style.display = "none";
+        returnButton.style.display = "block";
+    });
+    // 監聽廣告影片播放結束事件
+    advideo.addEventListener("ended", function() {
+        // 播放正式影片，隱藏按鈕
+        mainvideo.style.display = "block";
+        mainvideo.play(); 
+        advideo.style.display = "none";
+        skipButton.style.display = "none";
+        playButton.style.display = "none";
+        returnButton.style.display = "block";
+    });
+    
+    
     returnButton.addEventListener("click", function() {
-        window.location.href = "廣告挑戰者.html"; // 返回上一頁
+        window.location.href = "廣告解放者.html"; // 返回上一頁
     });
+
+
 </script>
 
 </body>
